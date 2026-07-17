@@ -28,16 +28,18 @@
 
 1.  **Клонируйте репозиторий:**
     ```bash
-    git clone https://github.com/yaroshin228/game-guess-of-number.git
+    git clone https://github.com/yaroshin228/GuessTheNumber.git
 
-2.  **Перейдите в папку с проектом:**
-    ```bash
-    cd game-guess-of-number
+2.  **Перейдите в директорию**
+   ```bash
+   cd GuessTheNumber/src
 
-3.  **Скомпилируйте программу:**
-    ```bash
-    g++ guess-a-number.cpp -o guess-a-number
+3.  **Соберите проект**
+   ```bash
+   mkdir build && cd build
+   cmake ..
+   make
 
-4.  **Запустите:**
-    ```bash
-    ./guess-a-number
+4.  **Запустите игру**
+   ```bash
+   ./GuessTheNumber
