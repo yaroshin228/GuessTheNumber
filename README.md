@@ -20,26 +20,26 @@
 
 ## 🚀 Запуск
 
-### Предварительные требования
-*   Компилятор C++ (например, g++, Clang)
-*   Система сборки (опционально)
-
 ### Инструкция по сборке и запуску
 
 1.  **Клонируйте репозиторий:**
-    ```bash
+   ```bash
     git clone https://github.com/yaroshin228/GuessTheNumber.git
+   ```
 
 2.  **Перейдите в директорию**
    ```bash
    cd GuessTheNumber/src
+   ```
 
 3.  **Соберите проект**
    ```bash
    mkdir build && cd build
    cmake ..
    make
+   ```
 
 4.  **Запустите игру**
    ```bash
    ./GuessTheNumber
+   ```
