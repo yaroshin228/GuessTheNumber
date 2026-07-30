@@ -1,54 +1,57 @@
 #include <iostream>
 #include <random>
 
-using namespace std;
 int main() {
+    constexpr int MIN_NUMBER = 1;
+    constexpr int MAX_NUMBER = 50;
+    constexpr int MAX_ATTEMPTS = 10;
 
-    // Переменные
-    int guess;
-    int min = 1;
-    int max = 50;
-    int attempts = 10;
-    
-    // Инициализация рандомного числа
-    random_device rd;
-    mt19937 gen(rd());
-    uniform_int_distribution<> dist(min, max);
-    
-    // Переменная рандомного числа
-    int secret = dist(gen);
-    
-    // Приветствие
-    cout << "Привет! Угадай число от " << min << " до " << max << endl;
-    cout << "У тебя " << attempts << " попыток." << endl;
+    int userGuess = 0;
+    int remainingAttempts = MAX_ATTEMPTS;
+    bool isWinner = false;
 
-    // Основной цикл
-    while (guess != secret && attempts > 0) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dist(MIN_NUMBER, MAX_NUMBER);
+    int secretNumber = dist(gen);
 
-        cout << "Введи число: ";
-        
-        if (!(cin >> guess)) {
-            cin.clear();
-            cin.ignore(10000, '\n');
-            cout << "Введи число!\n";
+    std::cout << "Привет! Угадай число от " << MIN_NUMBER << " до " << MAX_NUMBER << std::endl;
+    std::cout << "У тебя " << remainingAttempts << " попыток." << std::endl;
+
+    while (remainingAttempts > 0 && !isWinner) {
+        std::cout << "Введи число: ";
+
+        if (!(std::cin >> userGuess)) {
+            std::cin.clear();
+            std::cin.ignore(10000, '\n');
+            std::cout << "Ошибка! Введи целое число.\n";
+            continue;
+	}
+        if (userGuess == 1999) {
+            std::cout << "\033[33mДостигнут чит-режим! I love JA2 and ja2.su!  Загаданное число: " 
+                      << secretNumber << "\033[0m" << std::endl;
             continue;
         }
-        
-        if (guess < secret) cout << "Больше!\n";
-        else if (guess > secret) cout << "Меньше!\n";
-        else {
-            cout << "\033[32mТы победил!\033[0m" << endl;
-            break;
-        }
-        attempts--;
-        cout << "Осталось попыток: " << attempts << "\n";
 
-        if (attempts == 0) {
-            cout << "\033[31mТы проиграл! Попытки закончились.\033[0m";
-            break;
+        if (userGuess == secretNumber) {
+            std::cout << "\033[32mТы победил!\033[0m" << std::endl;
+            isWinner = true;
+        } else {
+            if (userGuess < secretNumber) {
+                std::cout << "Больше!" << std::endl;
+            } else {
+                std::cout << "Меньше!" << std::endl;
+            }
+
+            remainingAttempts--;
+            std::cout << "Осталось попыток: " << remainingAttempts << std::endl;
         }
     }
 
-    return 0;
+    if (!isWinner) {
+        std::cout << "\033[31mТы проиграл! Попытки закончились. Загаданное число: " 
+                  << secretNumber << "\033[0m" << std::endl;
+    }
 
+    return 0;
 }
