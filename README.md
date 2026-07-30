@@ -27,19 +27,14 @@
     git clone https://github.com/yaroshin228/GuessTheNumber.git
    ```
 
-2.  **Перейдите в директорию**
-   ```bash
-   cd GuessTheNumber/src
-   ```
-
-3.  **Соберите проект**
+2.  **Соберите проект**
    ```bash
    mkdir build && cd build
    cmake ..
    make
    ```
 
-4.  **Запустите игру**
+3.  **Запустите игру**
    ```bash
    ./GuessTheNumber
    ```
